@@ -3,13 +3,10 @@ const form = document.getElementById("predictionForm");
 const predictionText = document.getElementById("predictionText");
 const probabilityText = document.getElementById("probability");
 const progressFill = document.getElementById("progressFill");
-const loader = document.getElementById("loader");
 
 form.addEventListener("submit", async function (e) {
 
     e.preventDefault();
-
-    loader.classList.remove("hidden");
 
     predictionText.innerHTML = "Predicting...";
     probabilityText.innerHTML = "--";
@@ -68,8 +65,6 @@ form.addEventListener("submit", async function (e) {
 
         const result = await response.json();
 
-        loader.classList.add("hidden");
-
         const probability = Number(result.probability);
 
         const percent = Math.round(probability * 100);
@@ -101,8 +96,6 @@ form.addEventListener("submit", async function (e) {
     }
 
     catch (error) {
-
-        loader.classList.add("hidden");
 
         predictionText.innerHTML = "Error";
 
